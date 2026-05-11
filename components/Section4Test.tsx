@@ -61,7 +61,7 @@ export function Section4Test() {
   return (
     <section
       id="auto-teste"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="auto-teste-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -80,7 +80,7 @@ export function Section4Test() {
           {questions.map((q, i) => (
             <li
               key={i}
-              className="flex items-start gap-4 rounded-xl border border-cinza-claro/40 bg-white p-4"
+              className="flex items-start gap-4 rounded-2xl border border-cinza-claro/40 bg-white p-4"
             >
               <Square
                 aria-hidden
@@ -108,7 +108,7 @@ export function Section4Test() {
 
         <p className="mt-12 text-center font-display text-xl font-extrabold leading-tight text-verde-dark md:text-2xl">
           🎯 Não tem como você sair daqui sem saída.{" "}
-          <span className="block font-body text-base font-normal text-cinza-medio">
+          <span className="block font-body text-base font-normal text-cinza-grafite">
             Esse manual cobre todos os perfis.
           </span>
         </p>

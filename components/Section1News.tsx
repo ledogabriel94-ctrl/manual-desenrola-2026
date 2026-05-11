@@ -2,7 +2,7 @@ export function Section1News() {
   return (
     <section
       id="noticia"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="noticia-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -13,7 +13,7 @@ export function Section1News() {
           Vou te explicar em 1 minuto.
         </h2>
 
-        <div className="mt-8 space-y-6 text-cinza-grafite">
+        <div className="mt-8 space-y-8 text-cinza-grafite">
           <p>
             Em 4 de maio deste ano, o Governo Federal abriu um programa que muita gente ainda
             não sabe que existe.

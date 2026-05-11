@@ -64,7 +64,7 @@ export function Section3Routes() {
   return (
     <section
       id="rotas"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="rotas-title"
     >
       <div className="mx-auto max-w-5xl px-6">
@@ -108,7 +108,7 @@ export function Section3Routes() {
                   </span>
                 )}
               </h3>
-              <p className="mt-4 text-base text-cinza-medio">{route.desc}</p>
+              <p className="mt-4 text-base text-cinza-grafite">{route.desc}</p>
 
               <dl className="mt-5 space-y-2 text-sm">
                 {route.meta.map((m) => (
@@ -118,7 +118,7 @@ export function Section3Routes() {
                       <strong className="font-semibold text-cinza-grafite">
                         {m.label}:
                       </strong>{" "}
-                      <span className="text-cinza-medio">{m.value}</span>
+                      <span className="text-cinza-grafite">{m.value}</span>
                     </dd>
                   </div>
                 ))}
@@ -128,12 +128,12 @@ export function Section3Routes() {
                     <strong className="font-semibold text-cinza-grafite">
                       {route.whereLabel.split(" ").slice(1).join(" ")}:
                     </strong>{" "}
-                    <span className="text-cinza-medio">{route.whereValue}</span>
+                    <span className="text-cinza-grafite">{route.whereValue}</span>
                   </dd>
                 </div>
               </dl>
 
-              <div className="mt-6 rounded-xl bg-bege-papel p-4">
+              <div className="mt-6 rounded-2xl bg-bege-papel p-4">
                 <p className="text-sm text-cinza-grafite">
                   <strong className="font-bold">💡 No manual:</strong> {route.inManual}
                 </p>

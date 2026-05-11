@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply text-cinza-grafite bg-off-white font-body text-[18px] leading-[1.7];
+    @apply text-cinza-grafite bg-off-white font-body text-[18px] leading-[1.75];
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -28,10 +28,14 @@
 }
 
 /* Swiper pagination overrides */
+.swiper {
+  --swiper-pagination-bottom: 32px;
+}
+
 .swiper-pagination-bullet {
   @apply bg-cinza-claro;
-  width: 12px !important;
-  height: 12px !important;
+  width: 14px !important;
+  height: 14px !important;
   opacity: 0.5 !important;
   transition: opacity 200ms ease, background-color 200ms ease;
 }

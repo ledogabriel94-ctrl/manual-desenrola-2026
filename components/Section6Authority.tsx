@@ -21,7 +21,7 @@ export function Section6Authority() {
   return (
     <section
       id="autoridade"
-      className="bg-bege-papel/40 py-16 md:py-24"
+      className="bg-bege-papel/40 py-20 md:py-28"
       aria-labelledby="autoridade-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -36,7 +36,7 @@ export function Section6Authority() {
           {fontes.map((fonte) => (
             <li
               key={fonte.titulo}
-              className="flex items-start gap-3 rounded-xl bg-white p-5 md:p-6"
+              className="flex items-start gap-3 rounded-2xl bg-white p-5 md:p-6"
             >
               <span aria-hidden className="mt-1 text-verde">
                 ✅
@@ -45,7 +45,7 @@ export function Section6Authority() {
                 <p className="font-display text-lg font-bold text-cinza-grafite">
                   {fonte.titulo}
                 </p>
-                <p className="mt-1 text-cinza-medio">{fonte.desc}</p>
+                <p className="mt-1 text-cinza-grafite">{fonte.desc}</p>
               </div>
             </li>
           ))}
@@ -59,11 +59,11 @@ export function Section6Authority() {
           </p>
         </blockquote>
 
-        <aside className="mt-10 rounded-xl border-l-4 border-cinza-medio bg-cinza-grafite/5 p-6">
+        <aside className="mt-10 rounded-2xl border-l-4 border-cinza-medio bg-cinza-grafite/5 p-6">
           <p className="font-display text-base font-bold text-cinza-grafite">
             ⚠️ Aviso legal:
           </p>
-          <p className="mt-2 text-cinza-medio">
+          <p className="mt-2 text-cinza-grafite">
             Este manual é independente. Não temos vínculo, parceria ou autorização do Governo
             Federal, Banco Central, Serasa ou bancos. Apenas organizamos informação pública
             de forma didática.

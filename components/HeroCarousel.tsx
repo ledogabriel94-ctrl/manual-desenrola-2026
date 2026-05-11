@@ -12,6 +12,12 @@ import "swiper/css/effect-fade";
 const SLIDE_MS = 5000;
 const CTA_SLIDE_MS = 7000;
 
+const HEADLINE_BIG =
+  "font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95]";
+const HEADLINE_LONG =
+  "font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95]";
+const SUBTEXT = "font-body text-lg md:text-xl leading-[1.5]";
+
 export function HeroCarousel() {
   return (
     <section
@@ -35,7 +41,7 @@ export function HeroCarousel() {
         {/* CARD 1 — A PERGUNTA */}
         <SwiperSlide data-swiper-autoplay={SLIDE_MS}>
           <div className="flex h-[100svh] w-full flex-col items-center justify-center bg-off-white px-6 text-center">
-            <h1 className="font-display text-5xl font-extrabold leading-[1.05] text-cinza-grafite md:text-7xl">
+            <h1 className={`${HEADLINE_BIG} text-cinza-grafite`}>
               SEU NOME ESTÁ
               <br />
               NO SERASA?
@@ -46,10 +52,8 @@ export function HeroCarousel() {
         {/* CARD 2 — A BOA NOTÍCIA */}
         <SwiperSlide data-swiper-autoplay={SLIDE_MS}>
           <div className="flex h-[100svh] w-full flex-col items-center justify-center bg-verde px-6 text-center text-white">
-            <h2 className="font-display text-5xl font-extrabold leading-[1.05] md:text-7xl">
-              PARABÉNS.
-            </h2>
-            <p className="mt-6 max-w-2xl font-body text-xl leading-[1.4] md:text-2xl">
+            <h2 className={HEADLINE_BIG}>PARABÉNS.</h2>
+            <p className={`mt-6 max-w-2xl ${SUBTEXT}`}>
               O Governo Federal acabou de liberar o programa que pode limpar seu nome com até{" "}
               <strong className="font-bold">90% de desconto</strong>.
             </p>
@@ -62,7 +66,7 @@ export function HeroCarousel() {
             <p className="font-display text-2xl font-bold uppercase tracking-wide md:text-3xl">
               E tem mais:
             </p>
-            <h2 className="mt-4 max-w-3xl font-display text-4xl font-extrabold leading-[1.1] md:text-6xl">
+            <h2 className={`mt-4 max-w-3xl ${HEADLINE_LONG}`}>
               Em até 30 dias, o banco é{" "}
               <span className="text-verde-dark">OBRIGADO POR LEI</span> a limpar seu nome.
             </h2>
@@ -75,10 +79,10 @@ export function HeroCarousel() {
         {/* CARD 4 — O PRAZO */}
         <SwiperSlide data-swiper-autoplay={SLIDE_MS}>
           <div className="flex h-[100svh] w-full flex-col items-center justify-center bg-vermelho-suave px-6 text-center text-white">
-            <h2 className="max-w-3xl font-display text-5xl font-extrabold leading-[1.05] md:text-7xl">
+            <h2 className={`max-w-3xl ${HEADLINE_BIG}`}>
               MAS VOCÊ TEM ATÉ AGOSTO.
             </h2>
-            <p className="mt-6 font-body text-2xl leading-[1.4] md:text-3xl">
+            <p className={`mt-6 ${SUBTEXT}`}>
               90 dias. Depois disso, a porta fecha.
             </p>
           </div>
@@ -90,10 +94,10 @@ export function HeroCarousel() {
             <p className="font-display text-2xl font-bold uppercase tracking-wide md:text-3xl">
               E tem um problema.
             </p>
-            <h2 className="mt-4 max-w-3xl font-display text-3xl font-extrabold leading-[1.15] md:text-5xl">
+            <h2 className={`mt-4 max-w-3xl ${HEADLINE_LONG}`}>
               O banco SEMPRE oferece o pior desconto primeiro.
             </h2>
-            <p className="mt-6 max-w-2xl font-body text-lg leading-[1.5] md:text-xl">
+            <p className={`mt-6 max-w-2xl ${SUBTEXT}`}>
               Quem não sabe exigir o que tem direito perde{" "}
               <strong className="font-bold text-bege-papel">R$ 2.000 em média</strong>.
             </p>
@@ -112,11 +116,11 @@ export function HeroCarousel() {
                 priority
               />
             </div>
-            <h2 className="max-w-3xl font-display text-3xl font-extrabold leading-[1.1] md:text-5xl">
+            <h2 className={`max-w-3xl ${HEADLINE_LONG}`}>
               Este manual te mostra como{" "}
               <span className="text-verde-dark">EXIGIR SEUS DIREITOS</span>.
             </h2>
-            <ul className="mt-8 space-y-2 text-left font-body text-base md:text-lg">
+            <ul className="mt-8 space-y-2 text-left font-body text-lg md:text-xl">
               <li>✓ 6 bancos cobertos</li>
               <li>✓ Mensagens prontas para copiar</li>
               <li>✓ Tabela oficial de descontos</li>
@@ -128,7 +132,7 @@ export function HeroCarousel() {
         {/* CARD 7 — A AÇÃO */}
         <SwiperSlide data-swiper-autoplay={CTA_SLIDE_MS}>
           <div className="flex h-[100svh] w-full flex-col items-center justify-center bg-gradient-to-b from-verde to-verde-dark px-6 text-center text-white">
-            <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] md:text-6xl">
+            <h2 className={`max-w-3xl ${HEADLINE_BIG}`}>
               COMECE A NEGOCIAR HOJE.
             </h2>
             <p className="mt-6 font-display text-3xl font-bold md:text-5xl">

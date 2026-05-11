@@ -10,7 +10,7 @@ export function Section7Pricing() {
   return (
     <section
       id="preco"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="preco-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -21,12 +21,16 @@ export function Section7Pricing() {
           Comece a negociar HOJE.
         </h2>
 
-        <div className="mt-12 flex flex-col items-center rounded-3xl border-2 border-verde bg-white p-8 shadow-xl shadow-verde/10 md:p-12">
-          <p className="font-body text-base font-medium uppercase tracking-wide text-cinza-medio">
+        <div className="mt-12 flex flex-col items-center rounded-3xl border-2 border-verde bg-white p-8 shadow-sm md:p-12">
+          <span className="inline-flex items-center gap-1 rounded-full bg-verde-light px-3 py-1 font-display text-xs font-bold uppercase tracking-wide text-verde-dark">
+            ⭐ Melhor preço
+          </span>
+
+          <p className="mt-4 font-body text-base font-medium uppercase tracking-wide text-cinza-medio">
             Hoje, por apenas:
           </p>
 
-          <p className="mt-4 font-display text-7xl font-extrabold leading-none text-verde-dark md:text-8xl">
+          <p className="mt-4 font-display text-7xl font-extrabold leading-none text-verde md:text-9xl">
             R$ 27<span className="text-4xl md:text-5xl">,00</span>
           </p>
 

@@ -85,7 +85,7 @@ export function Section8FAQ() {
   return (
     <section
       id="faq"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="faq-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -110,7 +110,7 @@ export function Section8FAQ() {
                     className="mt-1 h-5 w-5 flex-shrink-0 stroke-cinza-medio transition-transform duration-200 group-open:rotate-180"
                   />
                 </summary>
-                <div className="pb-6 text-cinza-medio">{faq.a}</div>
+                <div className="pb-6 text-cinza-grafite">{faq.a}</div>
               </details>
             </li>
           ))}

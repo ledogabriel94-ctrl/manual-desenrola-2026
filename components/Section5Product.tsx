@@ -35,7 +35,7 @@ export function Section5Product() {
   return (
     <section
       id="produto"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="produto-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -55,7 +55,7 @@ export function Section5Product() {
           >
             Manual Desenrola 2026
           </h2>
-          <p className="mt-4 max-w-prose text-center font-body text-lg text-cinza-medio md:text-xl">
+          <p className="mt-4 max-w-prose text-center font-body text-lg text-cinza-grafite md:text-xl">
             <strong className="font-bold text-cinza-grafite">
               PDF visual completo
             </strong>{" "}
@@ -77,7 +77,7 @@ export function Section5Product() {
                   {banco.nome}
                 </strong>
                 {banco.complemento && (
-                  <span className="text-cinza-medio"> ({banco.complemento})</span>
+                  <span className="text-cinza-grafite"> ({banco.complemento})</span>
                 )}
               </span>
             </li>
@@ -87,7 +87,7 @@ export function Section5Product() {
         <h3 className="mt-12 font-display text-xl font-bold text-cinza-grafite md:text-2xl">
           Cada banco com:
         </h3>
-        <ul className="mt-6 space-y-2 pl-1 text-cinza-medio" role="list">
+        <ul className="mt-6 space-y-2 pl-1 text-cinza-grafite" role="list">
           {cadaBancoCom.map((item) => (
             <li key={item} className="before:mr-2 before:content-['–']">
               {item}
@@ -98,7 +98,7 @@ export function Section5Product() {
         <h3 className="mt-12 font-display text-xl font-bold text-cinza-grafite md:text-2xl">
           Mais o capítulo completo da Rota 3:
         </h3>
-        <p className="mt-3 text-cinza-medio">Serasa Limpa Nome, passo a passo.</p>
+        <p className="mt-3 text-cinza-grafite">Serasa Limpa Nome, passo a passo.</p>
 
         <div className="mt-16 rounded-2xl bg-verde-light p-6 md:p-10">
           <h3 className="flex items-center gap-3 font-display text-2xl font-extrabold text-verde-dark md:text-3xl">
@@ -108,12 +108,12 @@ export function Section5Product() {
             {bonus.map((b) => (
               <li
                 key={b.titulo}
-                className="rounded-xl bg-white p-5 md:p-6"
+                className="rounded-2xl bg-white p-5 md:p-6"
               >
                 <p className="flex items-center gap-2 font-display text-lg font-bold text-cinza-grafite md:text-xl">
                   <span aria-hidden>🎁</span> {b.titulo}
                 </p>
-                <p className="mt-2 text-cinza-medio">{b.desc}</p>
+                <p className="mt-2 text-cinza-grafite">{b.desc}</p>
               </li>
             ))}
           </ul>

@@ -60,7 +60,7 @@ export function Section2Traps() {
   return (
     <section
       id="armadilhas"
-      className="bg-off-white py-16 md:py-24"
+      className="bg-off-white py-20 md:py-28"
       aria-labelledby="armadilhas-title"
     >
       <div className="mx-auto max-w-3xl px-6">
@@ -95,8 +95,8 @@ export function Section2Traps() {
                   {trap.number} — {trap.title}
                 </span>
               </h3>
-              <p className="mt-4 text-cinza-medio">{trap.description}</p>
-              <div className="mt-5 rounded-xl bg-verde-light p-5">
+              <p className="mt-4 text-cinza-grafite">{trap.description}</p>
+              <div className="mt-5 rounded-2xl bg-verde-light p-5">
                 <p className="text-cinza-grafite">
                   <strong className="font-bold text-verde-dark">✅ No manual:</strong>{" "}
                   {trap.solution}
