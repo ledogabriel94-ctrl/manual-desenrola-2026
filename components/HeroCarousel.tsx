@@ -26,9 +26,10 @@ export function HeroCarousel() {
         autoplay={{
           delay: SLIDE_MS,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true,
+          pauseOnMouseEnter: false,
         }}
         pagination={{ clickable: true }}
+        onSwiper={(swiper) => swiper.autoplay?.start()}
         className="h-[100svh] w-full"
       >
         {/* CARD 1 — A PERGUNTA */}
