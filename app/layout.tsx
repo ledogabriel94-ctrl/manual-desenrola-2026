@@ -17,6 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
   title: "Manual Desenrola 2026 — Limpe seu nome com até 90% de desconto",
   description:
     "Manual completo passo a passo dos 6 maiores bancos do Brasil. Use o programa Desenrola 2026 e limpe seu nome no Serasa em até 30 dias.",
