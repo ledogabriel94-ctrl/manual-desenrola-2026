@@ -8,31 +8,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        verde: {
-          DEFAULT: "#16A34A",
-          dark: "#15803D",
-          light: "#DCFCE7",
-        },
-        cinza: {
-          grafite: "#1F2937",
-          medio: "#4B5563",
-          claro: "#9CA3AF",
-        },
-        bege: {
-          papel: "#FEF3C7",
-        },
-        vermelho: {
-          suave: "#EF4444",
-          dark: "#DC2626",
-        },
-        "off-white": "#FAFAF9",
+        // Paleta v7
+        azul: "#1E40AF",
+        "azul-escuro": "#1E3A8A",
+        verde: "#16A34A",
+        "verde-escuro": "#15803D",
+        "verde-claro": "#DCFCE7",
+        "verde-light-text": "#86EFAC",
+        laranja: "#EA580C",
+        amarelo: "#FEF3C7",
+        grafite: "#1F2937",
+        cinza: "#4B5563",
+        "cinza-claro": "#9CA3AF",
+        "bg-suave": "#F9FAFB",
+        rule: "#E5E7EB",
       },
       fontFamily: {
-        display: ["var(--font-jakarta)", "system-ui", "sans-serif"],
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
-      },
-      maxWidth: {
-        prose: "65ch",
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-jakarta)", "Plus Jakarta Sans", "sans-serif"],
       },
     },
   },
