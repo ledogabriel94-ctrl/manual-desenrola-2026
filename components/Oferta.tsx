@@ -15,7 +15,12 @@ export function Oferta() {
             Pagamento à vista no Pix
           </div>
 
-          <a href={env.checkoutUrl} className="btn-cta">
+          <a
+            href={env.checkoutUrl}
+            className="btn-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Quero o manual
           </a>
 

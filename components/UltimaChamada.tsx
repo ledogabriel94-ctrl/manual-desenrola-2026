@@ -31,7 +31,12 @@ export function UltimaChamada() {
           </div>
         </div>
 
-        <a href={env.checkoutUrl} className="btn-cta-final">
+        <a
+          href={env.checkoutUrl}
+          className="btn-cta-final"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Quero o manual por R$ 27
         </a>
       </div>
