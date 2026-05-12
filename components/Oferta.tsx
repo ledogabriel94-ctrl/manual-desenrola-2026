@@ -12,7 +12,7 @@ export function Oferta() {
             R$ 27<span className="oferta-preco-cents">,00</span>
           </div>
           <div className="oferta-parcelas">
-            à vista no Pix ou 3x R$ 9,99 no cartão
+            à vista no Pix ou cartão de crédito
           </div>
 
           <a href={env.checkoutUrl} className="btn-cta">
