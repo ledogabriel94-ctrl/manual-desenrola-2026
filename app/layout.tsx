@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${jakarta.variable} ${inter.variable}`}>
-      <head>
+      <body>
         {/* Meta Pixel Code */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
@@ -68,8 +68,8 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }
