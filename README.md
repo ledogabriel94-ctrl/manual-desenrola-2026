@@ -12,13 +12,9 @@ Abrir [http://localhost:3000](http://localhost:3000).
 
 ## Variáveis de ambiente
 
-Copie `.env.local.example` para `.env.local` e ajuste:
-
-```
-NEXT_PUBLIC_CHECKOUT_URL=<link do GGCheckout>
-```
-
-Sem essa variável, os botões caem para o fallback `#checkout` (âncora inerte).
+Copie `.env.local.example` para `.env.local`. O único valor configurável é
+`NEXT_PUBLIC_SITE_URL` (usado pelo `metadataBase`). O link de checkout do
+Tribopay está hardcoded em `components/Oferta.tsx` e `components/UltimaChamada.tsx`.
 
 ## Build de produção
 
@@ -31,14 +27,11 @@ npm start
 
 1. Push pro GitHub
 2. Importar o repositório no Vercel
-3. Adicionar variável de ambiente `NEXT_PUBLIC_CHECKOUT_URL`
-4. Deploy automático
+3. Deploy automático
 
 ## TODOs pré-deploy
 
 - [ ] Substituir `public/og-image.png` por imagem real 1200×630 (referência ainda inexistente — o arquivo PNG precisa ser gerado no Canva e adicionado).
-- [ ] Preencher CNPJ no `Footer.tsx` quando disponível.
-- [ ] Definir `NEXT_PUBLIC_CHECKOUT_URL` no painel da Vercel antes do deploy.
 - [ ] Vincular Termos de Uso e Política de Privacidade (atualmente `href="#"`).
 
 ## Stack
@@ -72,9 +65,6 @@ components/
 ├── Section8FAQ.tsx
 ├── Footer.tsx
 └── ui/CTAButton.tsx Botão CTA reutilizável
-
-lib/
-└── env.ts           Lê NEXT_PUBLIC_CHECKOUT_URL
 
 public/
 └── pdf-mockup.svg   Capa do manual no Carrossel/Seção 5
