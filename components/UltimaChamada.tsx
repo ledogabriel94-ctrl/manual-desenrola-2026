@@ -1,3 +1,4 @@
+import { CheckoutButton } from "@/components/CheckoutButton";
 import { env } from "@/lib/env";
 
 export function UltimaChamada() {
@@ -31,14 +32,13 @@ export function UltimaChamada() {
           </div>
         </div>
 
-        <a
+        <CheckoutButton
           href={env.checkoutUrl}
           className="btn-cta-final"
-          target="_blank"
-          rel="noopener noreferrer"
+          placement="ultima_chamada"
         >
           Quero o manual por R$ 27
-        </a>
+        </CheckoutButton>
       </div>
     </section>
   );
