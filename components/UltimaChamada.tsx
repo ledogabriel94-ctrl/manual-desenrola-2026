@@ -1,5 +1,3 @@
-import { env } from "@/lib/env";
-
 export function UltimaChamada() {
   return (
     <section className="ultima-section">
@@ -32,7 +30,7 @@ export function UltimaChamada() {
         </div>
 
         <a
-          href={env.checkoutUrl}
+          href="https://go.tribopay.com.br/4yzxuuyhrs"
           className="btn-cta-final"
           target="_blank"
           rel="noopener noreferrer"

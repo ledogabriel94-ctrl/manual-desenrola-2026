@@ -1,5 +1,3 @@
-import { env } from "@/lib/env";
-
 export function Oferta() {
   return (
     <section className="oferta-section">
@@ -16,7 +14,7 @@ export function Oferta() {
           </div>
 
           <a
-            href={env.checkoutUrl}
+            href="https://go.tribopay.com.br/4yzxuuyhrs"
             className="btn-cta"
             target="_blank"
             rel="noopener noreferrer"
@@ -28,7 +26,7 @@ export function Oferta() {
             <li>Acesso imediato após o pagamento</li>
             <li>Compatível com celular e computador</li>
             <li>Atualização gratuita até o fim do programa</li>
-            <li>Pagamento seguro via GGCheckout</li>
+            <li>Pagamento seguro via Tribopay</li>
           </ul>
 
           <div className="oferta-garantia">
