@@ -41,7 +41,7 @@ function CtaButton({ children }: { children: React.ReactNode }) {
   return (
     <Link
       to={QUIZ_HREF}
-      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 sm:px-9 py-4 shadow-lg transition hover:scale-[1.02]"
+      className="animate-cta inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 sm:px-9 py-4 shadow-lg transition hover:scale-[1.02]"
     >
       {children}
       <ArrowRight className="size-5 shrink-0" />

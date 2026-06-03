@@ -232,7 +232,7 @@ function PerguntaTexto({
       <button
         type="submit"
         disabled={!podeAvancar}
-        className="inline-flex w-full sm:w-auto sm:mx-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-8 py-4 shadow-lg transition hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+        className="animate-cta inline-flex w-full sm:w-auto sm:mx-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-8 py-4 shadow-lg transition hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         Continuar
         <ArrowRight className="size-5 shrink-0" />

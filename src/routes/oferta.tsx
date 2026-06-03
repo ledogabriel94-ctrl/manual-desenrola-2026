@@ -145,7 +145,7 @@ function Header() {
         </div>
         <a
           href="#oferta"
-          className="shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 shadow-md transition whitespace-nowrap"
+          className="animate-cta shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 shadow-md transition whitespace-nowrap"
         >
           <span className="hidden sm:inline">Quero o passo a passo</span>
           <span className="sm:hidden">Quero o guia</span>
@@ -183,7 +183,7 @@ function Hero() {
           <div className="mt-10 flex justify-center">
             <a
               href="#oferta"
-              className="inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-8 py-4 shadow-xl shadow-[#009c3b]/30 hover:scale-[1.02] transition"
+              className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-8 py-4 shadow-xl shadow-[#009c3b]/30 hover:scale-[1.02] transition"
             >
               QUERO NEGOCIAR MELHOR
               <ArrowRight className="size-5" />
@@ -364,7 +364,7 @@ function DiscountTables() {
         <div className="mt-8 flex flex-col items-center gap-3">
           <a
             href="#oferta"
-            className="inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 py-3.5 shadow-md transition"
+            className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 py-3.5 shadow-md transition"
           >
             Quero o roteiro para negociar com segurança
             <ArrowRight className="size-4" />
@@ -473,7 +473,7 @@ function Product() {
             </div>
             <a
               href="#oferta"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-base font-black px-7 py-3.5 shadow-xl transition"
+              className="animate-cta-gold mt-8 inline-flex items-center gap-2 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-base font-black px-7 py-3.5 shadow-xl transition"
             >
               QUERO O PASSO A PASSO
               <ArrowRight className="size-5" />
@@ -624,7 +624,7 @@ function Offer() {
 
                   <a
                     href={CHECKOUT_URL}
-                    className="mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-base font-bold px-8 py-4 shadow-md hover:shadow-lg transition"
+                    className="animate-cta mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-base font-bold px-8 py-4 shadow-md hover:shadow-lg transition"
                   >
                     Acessar o guia completo
                     <ArrowRight className="size-5" />
@@ -766,7 +766,7 @@ function Guarantee() {
             </p>
             <a
               href="#oferta"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-6 h-[44px] shadow-sm transition"
+              className="animate-cta mt-6 inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-6 h-[44px] shadow-sm transition"
             >
               Acessar o guia completo
               <ArrowRight className="size-4" />
@@ -848,7 +848,7 @@ function FinalCTA() {
         </h2>
         <a
           href="#oferta"
-          className="mt-8 inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-sm sm:text-lg font-black px-6 sm:px-10 py-4 sm:py-5 shadow-2xl transition hover:scale-[1.02] max-w-full"
+          className="animate-cta-gold mt-8 inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-sm sm:text-lg font-black px-6 sm:px-10 py-4 sm:py-5 shadow-2xl transition hover:scale-[1.02] max-w-full"
         >
           <span className="whitespace-normal sm:whitespace-nowrap">QUERO O PASSO A PASSO POR R$ 27</span>
           <ArrowRight className="size-5 shrink-0" />

@@ -239,3 +239,26 @@
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 .delay-500 { animation-delay: 0.5s; }
+
+/* CTA pulsante: anel que expande pra chamar atenção e clique.
+   Só anima box-shadow -> não conflita com hover:scale dos botões.
+   Pausa ao passar o mouse. */
+@keyframes cta-ring-green {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 156, 59, 0.55); }
+  70%  { box-shadow: 0 0 0 16px rgba(0, 156, 59, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 156, 59, 0); }
+}
+@keyframes cta-ring-gold {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.65); }
+  70%  { box-shadow: 0 0 0 16px rgba(255, 200, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 200, 0, 0); }
+}
+.animate-cta { animation: cta-ring-green 1.8s ease-out infinite; }
+.animate-cta-gold { animation: cta-ring-gold 1.8s ease-out infinite; }
+.animate-cta:hover,
+.animate-cta-gold:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cta,
+  .animate-cta-gold { animation: none; }
+}
