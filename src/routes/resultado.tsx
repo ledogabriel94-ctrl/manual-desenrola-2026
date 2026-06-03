@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2, Clock, ShieldCheck, BadgeCheck, TrendingDown } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
 import personFinance from "@/assets/person-finance.jpg";
-import solutionPerson from "@/assets/solution-person.jpg";
+
+// Foto real puxada do site original (sem símbolos do governo).
+const IMG_MULHER = "/desenrola/desenrola-mulher.webp";
 
 export const Route = createFileRoute("/resultado")({
   head: () => ({
@@ -109,9 +111,9 @@ function Resultado() {
         {/* BLOCO 2 (print 4) */}
         <section className="mt-6">
           <img
-            src={solutionPerson}
+            src={IMG_MULHER}
             alt="Pessoa renegociando dívidas pelo celular"
-            className="w-full rounded-2xl border border-border object-cover aspect-[16/10]"
+            className="w-full rounded-2xl border border-border object-cover"
           />
           <div className="mt-4 rounded-2xl bg-[#f6f7f8] p-5 sm:p-6">
             <p className="text-[1.02rem] leading-relaxed text-foreground/85">

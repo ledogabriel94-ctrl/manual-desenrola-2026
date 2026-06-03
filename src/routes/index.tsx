@@ -11,8 +11,11 @@ import {
   Sparkles,
 } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
-import personFinance from "@/assets/person-finance.jpg";
-import solutionPerson from "@/assets/solution-person.jpg";
+
+// Assets reais puxados do site original (em /public/desenrola), sem símbolos do governo.
+const VIDEO_SRC = "/desenrola/desenrola-video.mp4";
+const VIDEO_POSTER = "/desenrola/desenrola-video-poster.jpg";
+const IMG_MULHER = "/desenrola/desenrola-mulher.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,7 +52,7 @@ function CtaButton({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CtaBlock({ texto = "Quero o passo a passo" }: { texto?: string }) {
+function CtaBlock({ texto = "Verificar Minha Elegibilidade Agora" }: { texto?: string }) {
   return (
     <div className="my-8 rounded-2xl border border-[#009c3b]/25 bg-[#f1f8f3] p-5 sm:p-6 text-center">
       <CtaButton>{texto}</CtaButton>
@@ -96,22 +99,27 @@ function Advertorial() {
           <span>Atualizado em 02/06/2026</span>
         </div>
 
-        {/* imagem de destaque */}
+        {/* vídeo de destaque (puxado do site original) */}
         <figure className="mt-6">
-          <img
-            src={personFinance}
-            alt="Pessoa organizando as finanças e renegociando dívidas"
-            className="w-full rounded-2xl border border-border object-cover aspect-[16/9]"
-          />
+          <div className="overflow-hidden rounded-2xl border border-border bg-black">
+            <video
+              className="w-full h-auto"
+              src={VIDEO_SRC}
+              poster={VIDEO_POSTER}
+              controls
+              playsInline
+              preload="metadata"
+            />
+          </div>
           <figcaption className="mt-2 text-xs text-foreground/45">
-            Milhões de brasileiros estão aproveitando a nova janela de renegociação. (Foto: ilustrativa)
+            Entenda em 30 segundos como funciona a renegociação. (Vídeo ilustrativo)
           </figcaption>
         </figure>
 
         {/* lead */}
         <div className="prose-custom mt-7 space-y-4 text-[1.05rem] leading-relaxed text-foreground/85">
           <p>
-            <span className="float-left mr-2 text-5xl font-black leading-none text-[#009c3b]">M</span>
+            <span className="float-left mr-2 text-5xl font-black leading-none text-[#002776]">M</span>
             ais de <strong>72 milhões de brasileiros</strong> têm o nome negativado — e uma nova janela de
             renegociação de dívidas está abrindo com condições que raramente apareceram antes. Pelo{" "}
             <strong>Desenrola Brasil</strong>, é possível renegociar dívidas em bancos, financeiras, cartões de
@@ -158,12 +166,12 @@ function Advertorial() {
           </div>
         </div>
 
-        {/* imagem secundária */}
+        {/* imagem secundária (puxada do site original) */}
         <figure className="mt-8">
           <img
-            src={solutionPerson}
-            alt="Pessoa aliviada após renegociar as dívidas"
-            className="w-full rounded-2xl border border-border object-cover aspect-[16/9]"
+            src={IMG_MULHER}
+            alt="Mulher renegociando as dívidas pelo celular"
+            className="w-full rounded-2xl border border-border object-cover"
           />
         </figure>
 
