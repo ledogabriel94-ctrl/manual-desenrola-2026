@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2, Clock, ShieldCheck, BadgeCheck, TrendingDown } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
-import personFinance from "@/assets/person-finance.jpg";
 
 // Foto real puxada do site original (sem símbolos do governo).
 const IMG_MULHER = "/desenrola/desenrola-mulher.webp";
@@ -102,12 +101,7 @@ export function Resultado({ onContinue }: { onContinue: () => void }) {
 
         {/* BLOCO 3 (print 5) */}
         <section className="mt-6">
-          <img
-            src={personFinance}
-            alt="Nome limpo e acesso ao crédito de volta"
-            className="w-full rounded-2xl border border-border object-cover aspect-[16/10]"
-          />
-          <div className="mt-4 rounded-2xl bg-[#f6f7f8] p-5 sm:p-6">
+          <div className="rounded-2xl bg-[#f6f7f8] p-5 sm:p-6">
             <p className="text-[1.02rem] leading-relaxed text-foreground/85">
               Após a renegociação, seu nome será automaticamente retirado dos cadastros de inadimplentes (SPC,
               Serasa, SCPC) em até <strong>5 dias úteis</strong>. Você voltará a ter acesso ao crédito e poderá

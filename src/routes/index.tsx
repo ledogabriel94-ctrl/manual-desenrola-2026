@@ -16,7 +16,8 @@ import { Quiz } from "@/funnel/Quiz";
 import { Resultado } from "@/funnel/Resultado";
 import { Oferta } from "@/funnel/Oferta";
 
-// Assets reais puxados do site original (em /public/desenrola), sem símbolos do governo.
+// Assets reais (em /public/desenrola), sem símbolos do governo.
+const BANNER_TOPO = "/desenrola/desenrola-banner-topo.jpg";
 const VIDEO_SRC = "/desenrola/desenrola-video.mp4";
 const VIDEO_POSTER = "/desenrola/desenrola-video-poster.jpg";
 const IMG_MULHER = "/desenrola/desenrola-mulher.webp";
@@ -106,6 +107,17 @@ function Advertorial({ onNext }: { onNext: () => void }) {
           </span>
         </div>
       </header>
+
+      {/* banner do topo (começo do funil) */}
+      <div className="border-b border-border bg-white">
+        <div className="container mx-auto px-4 max-w-5xl py-4">
+          <img
+            src={BANNER_TOPO}
+            alt="Novo Desenrola Brasil — renegociação de dívidas de famílias, estudantes e empresas"
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
+      </div>
 
       <article className="container mx-auto px-4 max-w-3xl py-8 sm:py-10">
         {/* categoria + meta */}
