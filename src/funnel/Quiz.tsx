@@ -39,6 +39,34 @@ const PERGUNTAS = [
       "Outros tipos de dívida",
     ],
   },
+  {
+    id: "tempo",
+    tipo: "opcoes" as const,
+    pergunta: "Há quanto tempo seu nome está negativado?",
+    opcoes: [
+      "Menos de 6 meses",
+      "De 6 meses a 1 ano",
+      "Mais de 1 ano",
+      "Não sei / não estou negativado(a)",
+    ],
+  },
+  {
+    id: "credores",
+    tipo: "opcoes" as const,
+    pergunta: "Com quantos bancos ou credores você tem dívida?",
+    opcoes: ["Só 1", "2 ou 3", "Mais de 3"],
+  },
+  {
+    id: "objetivo",
+    tipo: "opcoes" as const,
+    pergunta: "O que você mais quer resolver agora?",
+    opcoes: [
+      "Limpar meu nome (sair do Serasa/SPC)",
+      "Parar de receber cobranças",
+      "Voltar a ter crédito",
+      "Pagar minhas dívidas mais barato",
+    ],
+  },
 ];
 
 const TOTAL_ETAPAS = PERGUNTAS.length;
