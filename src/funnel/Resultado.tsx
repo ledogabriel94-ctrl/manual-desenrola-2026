@@ -1,4 +1,3 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2, Clock, ShieldCheck, BadgeCheck, TrendingDown } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
@@ -7,34 +6,27 @@ import personFinance from "@/assets/person-finance.jpg";
 // Foto real puxada do site original (sem símbolos do governo).
 const IMG_MULHER = "/desenrola/desenrola-mulher.webp";
 
-export const Route = createFileRoute("/resultado")({
-  head: () => ({
-    meta: [
-      { title: "Seu resultado — Renegociação de dívidas pelo Desenrola" },
-      {
-        name: "description",
-        content: "Veja como funciona a renegociação de dívidas pelo Novo Desenrola Brasil com descontos de até 96%.",
-      },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-    ],
-  }),
-  component: Resultado,
-});
-
 function BrazilStripe({ className = "" }: { className?: string }) {
   return <div className={`h-1.5 w-full bg-[#009c3b] ${className}`} aria-hidden />;
 }
 
-function Cta({ children = "Quero o passo a passo" }: { children?: React.ReactNode }) {
+function Cta({
+  onClick,
+  children = "Quero o passo a passo",
+}: {
+  onClick: () => void;
+  children?: React.ReactNode;
+}) {
   return (
     <div className="text-center">
-      <Link
-        to="/oferta"
+      <button
+        type="button"
+        onClick={onClick}
         className="animate-cta inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 sm:px-9 py-4 shadow-lg transition hover:scale-[1.02]"
       >
         {children}
         <ArrowRight className="size-5 shrink-0" />
-      </Link>
+      </button>
       <p className="mt-3 text-xs font-semibold text-[#009c3b] flex items-center justify-center gap-1.5">
         <Clock className="size-3.5" /> Vagas limitadas — garanta o seu acesso
       </p>
@@ -42,28 +34,12 @@ function Cta({ children = "Quero o passo a passo" }: { children?: React.ReactNod
   );
 }
 
-function Resultado() {
-  const navigate = useNavigate();
-  const [allowed, setAllowed] = useState(false);
+export function Resultado({ onContinue }: { onContinue: () => void }) {
   const [nome, setNome] = useState("");
 
   useEffect(() => {
-    const ok = typeof window !== "undefined" && localStorage.getItem("quiz_completo") === "1";
-    if (!ok) {
-      navigate({ to: "/quiz", replace: true });
-      return;
-    }
     setNome(localStorage.getItem("quiz_nome") || "");
-    setAllowed(true);
-  }, [navigate]);
-
-  if (!allowed) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="size-10 rounded-full border-4 border-[#009c3b]/30 border-t-[#009c3b] animate-spin" />
-      </div>
-    );
-  }
+  }, []);
 
   const primeiroNome = nome.split(" ")[0] || "";
 
@@ -156,7 +132,7 @@ function Resultado() {
         </div>
 
         <div className="my-9">
-          <Cta />
+          <Cta onClick={onContinue} />
         </div>
       </main>
 

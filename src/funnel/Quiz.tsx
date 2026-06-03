@@ -1,21 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
-
-export const Route = createFileRoute("/quiz")({
-  head: () => ({
-    meta: [
-      { title: "Descubra seu perfil de negociação — Manual Desenrola" },
-      {
-        name: "description",
-        content: "Responda algumas perguntas rápidas para descobrir o melhor caminho para negociar suas dívidas.",
-      },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-    ],
-  }),
-  component: Quiz,
-});
 
 /* ───────────────────────────────────────────────────────────────
    PERGUNTAS DO QUIZ
@@ -58,8 +43,7 @@ const PERGUNTAS = [
 
 const TOTAL_ETAPAS = PERGUNTAS.length;
 
-function Quiz() {
-  const navigate = useNavigate();
+export function Quiz({ onComplete }: { onComplete: () => void }) {
   const [etapa, setEtapa] = useState(0);
   const [respostas, setRespostas] = useState<Record<string, string>>({});
   const [analisando, setAnalisando] = useState(false);
@@ -89,14 +73,14 @@ function Quiz() {
     if (etapa > 0) setEtapa((e) => e - 1);
   }
 
-  // Quando entra em "analisando", aguarda e leva pro resultado
+  // Quando entra em "analisando", aguarda e avança pro resultado (mesma URL)
   useEffect(() => {
     if (!analisando) return;
     const t = setTimeout(() => {
-      navigate({ to: "/resultado", replace: true });
+      onComplete();
     }, 2600);
     return () => clearTimeout(t);
-  }, [analisando, navigate]);
+  }, [analisando, onComplete]);
 
   const progresso = analisando ? 100 : Math.round((etapa / TOTAL_ETAPAS) * 100);
 

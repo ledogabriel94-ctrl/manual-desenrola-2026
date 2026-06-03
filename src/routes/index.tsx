@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -11,6 +12,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import logoDesenrola from "@/assets/logo-desenrola.png";
+import { Quiz } from "@/funnel/Quiz";
+import { Resultado } from "@/funnel/Resultado";
+import { Oferta } from "@/funnel/Oferta";
 
 // Assets reais puxados do site original (em /public/desenrola), sem símbolos do governo.
 const VIDEO_SRC = "/desenrola/desenrola-video.mp4";
@@ -31,31 +35,56 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "article" },
     ],
   }),
-  component: Advertorial,
+  component: Funnel,
 });
 
-const QUIZ_HREF = "/quiz";
+/* ───────────────────────────────────────────────────────────────
+   FUNIL EM PÁGINA ÚNICA
+   Tudo roda na mesma URL (manualdesenrola.com.br), sem mudar o caminho
+   — isso preserva os parâmetros de campanha (UTM) e o pixel funciona.
+   As etapas trocam por estado, não por rota.
+   ─────────────────────────────────────────────────────────────── */
+function Funnel() {
+  const [step, setStep] = useState<"materia" | "quiz" | "resultado" | "oferta">("materia");
+
+  // Sobe pro topo a cada troca de etapa.
+  useEffect(() => {
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  }, [step]);
+
+  if (step === "quiz") return <Quiz onComplete={() => setStep("resultado")} />;
+  if (step === "resultado") return <Resultado onContinue={() => setStep("oferta")} />;
+  if (step === "oferta") return <Oferta />;
+  return <Advertorial onNext={() => setStep("quiz")} />;
+}
 
 function BrazilStripe({ className = "" }: { className?: string }) {
   return <div className={`h-1.5 w-full bg-[#009c3b] ${className}`} aria-hidden />;
 }
 
-function CtaButton({ children }: { children: React.ReactNode }) {
+function CtaButton({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
   return (
-    <Link
-      to={QUIZ_HREF}
+    <button
+      type="button"
+      onClick={onClick}
       className="animate-cta inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 sm:px-9 py-4 shadow-lg transition hover:scale-[1.02]"
     >
       {children}
       <ArrowRight className="size-5 shrink-0" />
-    </Link>
+    </button>
   );
 }
 
-function CtaBlock({ texto = "Verificar Minha Elegibilidade Agora" }: { texto?: string }) {
+function CtaBlock({
+  onNext,
+  texto = "Verificar Minha Elegibilidade Agora",
+}: {
+  onNext: () => void;
+  texto?: string;
+}) {
   return (
     <div className="my-8 rounded-2xl border border-[#009c3b]/25 bg-[#f1f8f3] p-5 sm:p-6 text-center">
-      <CtaButton>{texto}</CtaButton>
+      <CtaButton onClick={onNext}>{texto}</CtaButton>
       <p className="mt-3 text-xs font-semibold text-[#009c3b] flex items-center justify-center gap-1.5">
         <Clock className="size-3.5" /> Vagas limitadas — leva menos de 1 minuto
       </p>
@@ -63,7 +92,7 @@ function CtaBlock({ texto = "Verificar Minha Elegibilidade Agora" }: { texto?: s
   );
 }
 
-function Advertorial() {
+function Advertorial({ onNext }: { onNext: () => void }) {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
       <BrazilStripe />
@@ -133,7 +162,7 @@ function Advertorial() {
           </p>
         </div>
 
-        <CtaBlock />
+        <CtaBlock onNext={onNext} />
 
         {/* seção 1 */}
         <h2 className="mt-10 text-2xl font-black text-[#002776]">1. O que está em jogo agora</h2>
@@ -196,7 +225,7 @@ function Advertorial() {
           ))}
         </ol>
 
-        <CtaBlock />
+        <CtaBlock onNext={onNext} />
 
         {/* nota de transparência (substitui a antiga "Base Legal" com leis do gov) */}
         <div className="mt-10 rounded-2xl bg-[#f6f7f8] p-5 text-sm text-foreground/65 flex gap-3">

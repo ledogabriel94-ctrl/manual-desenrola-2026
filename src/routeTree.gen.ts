@@ -10,10 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermosRouteImport } from './routes/termos'
-import { Route as ResultadoRouteImport } from './routes/resultado'
-import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
-import { Route as OfertaRouteImport } from './routes/oferta'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,24 +19,9 @@ const TermosRoute = TermosRouteImport.update({
   path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResultadoRoute = ResultadoRouteImport.update({
-  id: '/resultado',
-  path: '/resultado',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const QuizRoute = QuizRouteImport.update({
-  id: '/quiz',
-  path: '/quiz',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OfertaRoute = OfertaRouteImport.update({
-  id: '/oferta',
-  path: '/oferta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -56,68 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/oferta': typeof OfertaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/quiz': typeof QuizRoute
-  '/resultado': typeof ResultadoRoute
   '/termos': typeof TermosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/oferta': typeof OfertaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/quiz': typeof QuizRoute
-  '/resultado': typeof ResultadoRoute
   '/termos': typeof TermosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/oferta': typeof OfertaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/quiz': typeof QuizRoute
-  '/resultado': typeof ResultadoRoute
   '/termos': typeof TermosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/contato'
-    | '/oferta'
-    | '/privacidade'
-    | '/quiz'
-    | '/resultado'
-    | '/termos'
+  fullPaths: '/' | '/contato' | '/privacidade' | '/termos'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/contato'
-    | '/oferta'
-    | '/privacidade'
-    | '/quiz'
-    | '/resultado'
-    | '/termos'
-  id:
-    | '__root__'
-    | '/'
-    | '/contato'
-    | '/oferta'
-    | '/privacidade'
-    | '/quiz'
-    | '/resultado'
-    | '/termos'
+  to: '/' | '/contato' | '/privacidade' | '/termos'
+  id: '__root__' | '/' | '/contato' | '/privacidade' | '/termos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
-  OfertaRoute: typeof OfertaRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
-  QuizRoute: typeof QuizRoute
-  ResultadoRoute: typeof ResultadoRoute
   TermosRoute: typeof TermosRoute
 }
 
@@ -130,32 +78,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resultado': {
-      id: '/resultado'
-      path: '/resultado'
-      fullPath: '/resultado'
-      preLoaderRoute: typeof ResultadoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/quiz': {
-      id: '/quiz'
-      path: '/quiz'
-      fullPath: '/quiz'
-      preLoaderRoute: typeof QuizRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacidade': {
       id: '/privacidade'
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/oferta': {
-      id: '/oferta'
-      path: '/oferta'
-      fullPath: '/oferta'
-      preLoaderRoute: typeof OfertaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -178,10 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
-  OfertaRoute: OfertaRoute,
   PrivacidadeRoute: PrivacidadeRoute,
-  QuizRoute: QuizRoute,
-  ResultadoRoute: ResultadoRoute,
   TermosRoute: TermosRoute,
 }
 export const routeTree = rootRouteImport

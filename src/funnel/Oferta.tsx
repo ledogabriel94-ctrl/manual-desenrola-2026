@@ -1,5 +1,14 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+// 🔗 Link do checkout (Cakto). Trocar aqui se mudar a oferta/plataforma.
+const CHECKOUT_URL = "https://pay.cakto.com.br/39i79c9_910063";
+
+// Rola até a seção de oferta SEM mudar a URL (mantém pixel/UTM intactos).
+function scrollToOferta() {
+  if (typeof document !== "undefined") {
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 function VSLPlayer({ videoId, title }: { videoId: string; title: string }) {
   const [playing, setPlaying] = useState(false);
@@ -87,26 +96,6 @@ import testimonial3 from "@/assets/testimonial-3.png";
 import testimonial4 from "@/assets/testimonial-4.png";
 import testimonial5 from "@/assets/testimonial-5.png";
 
-export const Route = createFileRoute("/oferta")({
-  head: () => ({
-    meta: [
-      { title: "Manual Desenrola 2026 — Roteiro educativo para negociar pelo Desenrola" },
-      {
-        name: "description",
-        content:
-          "Guia educativo independente. Roteiro prático por banco para negociar pelo Novo Desenrola Brasil. PDF por R$ 27.",
-      },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { property: "og:title", content: "Manual Desenrola 2026" },
-      { property: "og:type", content: "product" },
-    ],
-  }),
-  component: Landing,
-});
-
-// 🔗 Link do checkout (Cakto). Trocar aqui se mudar a oferta/plataforma.
-const CHECKOUT_URL = "https://pay.cakto.com.br/39i79c9_910063";
-
 const BR_STRIPE = "bg-[#009c3b]";
 
 function BrazilStripe({ className = "" }: { className?: string }) {
@@ -143,14 +132,15 @@ function Header() {
             <a href="#faq" className="hover:text-[#009c3b] transition">FAQ</a>
           </nav>
         </div>
-        <a
-          href="#oferta"
+        <button
+          type="button"
+          onClick={scrollToOferta}
           className="animate-cta shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 shadow-md transition whitespace-nowrap"
         >
           <span className="hidden sm:inline">Quero o passo a passo</span>
           <span className="sm:hidden">Quero o guia</span>
           <ArrowRight className="size-4" />
-        </a>
+        </button>
       </div>
     </header>
   );
@@ -181,13 +171,14 @@ function Hero() {
 
 
           <div className="mt-10 flex justify-center">
-            <a
-              href="#oferta"
+            <button
+              type="button"
+              onClick={scrollToOferta}
               className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-8 py-4 shadow-xl shadow-[#009c3b]/30 hover:scale-[1.02] transition"
             >
               QUERO NEGOCIAR MELHOR
               <ArrowRight className="size-5" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -362,13 +353,14 @@ function DiscountTables() {
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-3">
-          <a
-            href="#oferta"
+          <button
+            type="button"
+            onClick={scrollToOferta}
             className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm sm:text-base font-bold px-6 py-3.5 shadow-md transition"
           >
             Quero o roteiro para negociar com segurança
             <ArrowRight className="size-4" />
-          </a>
+          </button>
           <p className="text-xs text-foreground/50 text-center max-w-2xl">
             Fonte: Ministério da Fazenda, Medida Provisória nº 1.355/2026 e regras do Novo
             Desenrola Brasil. Atualizado em 29/05/2026.
@@ -471,13 +463,14 @@ function Product() {
                 </div>
               ))}
             </div>
-            <a
-              href="#oferta"
+            <button
+              type="button"
+              onClick={scrollToOferta}
               className="animate-cta-gold mt-8 inline-flex items-center gap-2 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-base font-black px-7 py-3.5 shadow-xl transition"
             >
               QUERO O PASSO A PASSO
               <ArrowRight className="size-5" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -764,13 +757,14 @@ function Guarantee() {
             <p className="mt-3 text-[#475569] text-base leading-relaxed max-w-lg">
               Você acessa o guia, lê o conteúdo e decide com calma. Se não gostar, pode solicitar o reembolso dentro de 7 dias, sem burocracia.
             </p>
-            <a
-              href="#oferta"
+            <button
+              type="button"
+              onClick={scrollToOferta}
               className="animate-cta mt-6 inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-6 h-[44px] shadow-sm transition"
             >
               Acessar o guia completo
               <ArrowRight className="size-4" />
-            </a>
+            </button>
           </div>
 
           <div className="rounded-2xl bg-[#F8FAFC] border border-[#E5E7EB] p-6">
@@ -846,13 +840,14 @@ function FinalCTA() {
         <h2 className="mt-4 text-2xl sm:text-4xl lg:text-5xl font-black max-w-3xl mx-auto leading-tight">
           Antes de falar com o banco, tenha o roteiro na mão.
         </h2>
-        <a
-          href="#oferta"
+        <button
+          type="button"
+          onClick={scrollToOferta}
           className="animate-cta-gold mt-8 inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[#ffdf00] hover:bg-[#ffe833] text-[#002776] text-sm sm:text-lg font-black px-6 sm:px-10 py-4 sm:py-5 shadow-2xl transition hover:scale-[1.02] max-w-full"
         >
           <span className="whitespace-normal sm:whitespace-nowrap">QUERO O PASSO A PASSO POR R$ 27</span>
           <ArrowRight className="size-5 shrink-0" />
-        </a>
+        </button>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-white/80">
           <span className="inline-flex items-center gap-1.5"><Smartphone className="size-4" />Leia no celular</span>
           <span className="inline-flex items-center gap-1.5"><Download className="size-4" />PDF imediato</span>
@@ -884,31 +879,7 @@ function Footer() {
   );
 }
 
-function Landing() {
-  const navigate = useNavigate();
-  const [allowed, setAllowed] = useState(false);
-
-  useEffect(() => {
-    // Trava: só acessa a oferta quem completou o quiz.
-    const ok = typeof window !== "undefined" && localStorage.getItem("quiz_completo") === "1";
-    if (!ok) {
-      navigate({ to: "/quiz", replace: true });
-    } else {
-      setAllowed(true);
-    }
-  }, [navigate]);
-
-  if (!allowed) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-3 text-foreground/60">
-          <div className="size-10 rounded-full border-4 border-[#009c3b]/30 border-t-[#009c3b] animate-spin" />
-          <p className="text-sm font-medium">Carregando...</p>
-        </div>
-      </div>
-    );
-  }
-
+export function Oferta() {
   return (
     <div className="min-h-screen bg-background">
       <AnnouncementBar />
