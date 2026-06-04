@@ -71,10 +71,21 @@ const PERGUNTAS = [
 
 const TOTAL_ETAPAS = PERGUNTAS.length;
 
+// Tempo total da tela "Analisando seu perfil" (10s) + frases que vão trocando.
+const ANALISE_MS = 10000;
+const FRASES_ANALISE = [
+  "Analisando suas respostas...",
+  "Verificando o seu perfil de dívida...",
+  "Calculando o melhor caminho de negociação...",
+  "Cruzando com as condições disponíveis...",
+  "Preparando o seu resultado personalizado...",
+];
+
 export function Quiz({ onComplete }: { onComplete: () => void }) {
   const [etapa, setEtapa] = useState(0);
   const [respostas, setRespostas] = useState<Record<string, string>>({});
   const [analisando, setAnalisando] = useState(false);
+  const [passo, setPasso] = useState(0);
 
   const atual = PERGUNTAS[etapa];
 
@@ -101,13 +112,20 @@ export function Quiz({ onComplete }: { onComplete: () => void }) {
     if (etapa > 0) setEtapa((e) => e - 1);
   }
 
-  // Quando entra em "analisando", aguarda e avança pro resultado (mesma URL)
+  // "Analisando": frases trocam ao longo do tempo e ao final vai pro resultado.
   useEffect(() => {
     if (!analisando) return;
+    const perStep = ANALISE_MS / FRASES_ANALISE.length;
+    const stepIv = setInterval(() => {
+      setPasso((p) => Math.min(p + 1, FRASES_ANALISE.length - 1));
+    }, perStep);
     const t = setTimeout(() => {
       onComplete();
-    }, 7000);
-    return () => clearTimeout(t);
+    }, ANALISE_MS);
+    return () => {
+      clearInterval(stepIv);
+      clearTimeout(t);
+    };
   }, [analisando, onComplete]);
 
   const progresso = analisando ? 100 : Math.round((etapa / TOTAL_ETAPAS) * 100);
@@ -146,9 +164,25 @@ export function Quiz({ onComplete }: { onComplete: () => void }) {
               <h2 className="text-2xl sm:text-3xl font-black text-[#002776]">
                 Analisando seu perfil...
               </h2>
-              <p className="text-foreground/65 max-w-md">
-                Estamos preparando o caminho de negociação mais indicado para o seu caso. Aguarde um instante.
-              </p>
+              <ul className="mt-1 w-full max-w-sm space-y-2.5 text-left">
+                {FRASES_ANALISE.map((f, idx) => (
+                  <li
+                    key={f}
+                    className={`flex items-center gap-2.5 text-sm sm:text-base font-medium transition-colors duration-300 ${
+                      idx <= passo ? "text-foreground" : "text-foreground/30"
+                    }`}
+                  >
+                    {idx < passo ? (
+                      <CheckCircle2 className="size-5 shrink-0 text-[#009c3b]" />
+                    ) : idx === passo ? (
+                      <span className="size-5 shrink-0 rounded-full border-2 border-[#009c3b]/30 border-t-[#009c3b] animate-spin" />
+                    ) : (
+                      <span className="size-5 shrink-0 rounded-full border-2 border-foreground/15" />
+                    )}
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : (
             <div key={etapa} className="animate-fade-up">

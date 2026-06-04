@@ -260,13 +260,14 @@ function Hero({ unlocked, onUnlock }: { unlocked: boolean; onUnlock: () => void 
           {!unlocked && (
             <div className="mt-6 mx-auto max-w-2xl rounded-2xl border-2 border-[#ffdf00] bg-[#fffbe6] p-4 sm:p-5 text-center shadow-sm">
               <p className="flex items-center justify-center gap-2 text-base sm:text-lg font-black text-[#002776]">
-                <LockIcon className="size-5 text-[#b8860b]" />
-                Assista o vídeo até o final para liberar
+                <LockIcon className="size-5 text-[#002776]" />
+                Assista o vídeo para liberar
               </p>
               <p className="mt-1.5 text-sm text-foreground/75">
-                O <strong>passo a passo completo</strong> e a sua <strong>condição especial</strong> aparecem
-                automaticamente aqui assim que o vídeo chega na parte que importa.{" "}
-                <span className="text-[#b8860b] font-semibold">Não feche esta página.</span>
+                O vídeo tem <strong>apenas 2 minutos</strong>. Assim que ele terminar, o{" "}
+                <strong>passo a passo completo</strong> e a sua <strong>condição especial</strong> aparecem
+                automaticamente aqui.{" "}
+                <span className="text-[#002776] font-semibold">Não feche esta página.</span>
               </p>
             </div>
           )}
