@@ -1,7 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // 🔗 Link do checkout (Cakto). Trocar aqui se mudar a oferta/plataforma.
 const CHECKOUT_URL = "https://pay.cakto.com.br/39i79c9_910063";
+
+// ⏱️ Libera o resto da página quando o vídeo passa de 2:10 (130s).
+const UNLOCK_AT_SECONDS = 130;
+
+// Carrega a API de IFrame do YouTube uma única vez.
+function loadYouTubeAPI(): Promise<any> {
+  const w = window as any;
+  if (w.YT && w.YT.Player) return Promise.resolve(w.YT);
+  return new Promise((resolve) => {
+    const prev = w.onYouTubeIframeAPIReady;
+    w.onYouTubeIframeAPIReady = () => {
+      if (typeof prev === "function") prev();
+      resolve(w.YT);
+    };
+    if (!document.getElementById("yt-iframe-api")) {
+      const s = document.createElement("script");
+      s.id = "yt-iframe-api";
+      s.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(s);
+    }
+  });
+}
 
 // Rola até a seção de oferta SEM mudar a URL (mantém pixel/UTM intactos).
 function scrollToOferta() {
@@ -10,17 +32,74 @@ function scrollToOferta() {
   }
 }
 
-function VSLPlayer({ videoId, title }: { videoId: string; title: string }) {
+function VSLPlayer({
+  videoId,
+  title,
+  onReachUnlock,
+}: {
+  videoId: string;
+  title: string;
+  onReachUnlock?: () => void;
+}) {
   const [playing, setPlaying] = useState(false);
+  const holderRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<any>(null);
+  const firedRef = useRef(false);
+  const cbRef = useRef(onReachUnlock);
+  cbRef.current = onReachUnlock;
+
+  useEffect(() => {
+    if (!playing) return;
+    let interval: ReturnType<typeof setInterval> | undefined;
+    let cancelled = false;
+
+    loadYouTubeAPI().then((YT) => {
+      if (cancelled || !holderRef.current) return;
+      playerRef.current = new YT.Player(holderRef.current, {
+        width: "100%",
+        height: "100%",
+        videoId,
+        playerVars: {
+          autoplay: 1,
+          controls: 0, // sem barra de progresso -> evita pular o vídeo
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          disablekb: 1,
+          fs: 0,
+        },
+        events: {
+          onReady: (e: any) => e.target.playVideo(),
+        },
+      });
+      interval = setInterval(() => {
+        const p = playerRef.current;
+        if (p && typeof p.getCurrentTime === "function") {
+          if (p.getCurrentTime() >= UNLOCK_AT_SECONDS && !firedRef.current) {
+            firedRef.current = true;
+            cbRef.current?.();
+            if (interval) clearInterval(interval);
+          }
+        }
+      }, 500);
+    });
+
+    return () => {
+      cancelled = true;
+      if (interval) clearInterval(interval);
+      try {
+        playerRef.current?.destroy?.();
+      } catch {
+        /* ignore */
+      }
+    };
+  }, [playing, videoId]);
+
   if (playing) {
     return (
-      <iframe
-        className="absolute inset-0 w-full h-full"
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      />
+      <div className="absolute inset-0 w-full h-full">
+        <div ref={holderRef} className="w-full h-full" />
+      </div>
     );
   }
   return (
@@ -117,36 +196,40 @@ function AnnouncementBar() {
   );
 }
 
-function Header() {
+function Header({ unlocked }: { unlocked: boolean }) {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-border">
       <BrazilStripe />
       <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
           <img src={logoDesenrola} alt="Novo Desenrola Brasil" className="h-8 sm:h-9 w-auto shrink-0" />
-          <nav className="hidden md:flex items-center gap-5 text-sm font-medium text-foreground/70 border-l border-border pl-5">
-            <a href="#problema" className="hover:text-[#009c3b] transition">O problema</a>
-            <a href="#descontos" className="hover:text-[#009c3b] transition">Descontos</a>
-            <a href="#bancos" className="hover:text-[#009c3b] transition">Bancos</a>
-            <a href="#garantia" className="hover:text-[#009c3b] transition">Garantia</a>
-            <a href="#faq" className="hover:text-[#009c3b] transition">FAQ</a>
-          </nav>
+          {unlocked && (
+            <nav className="hidden md:flex items-center gap-5 text-sm font-medium text-foreground/70 border-l border-border pl-5">
+              <a href="#problema" className="hover:text-[#009c3b] transition">O problema</a>
+              <a href="#descontos" className="hover:text-[#009c3b] transition">Descontos</a>
+              <a href="#bancos" className="hover:text-[#009c3b] transition">Bancos</a>
+              <a href="#garantia" className="hover:text-[#009c3b] transition">Garantia</a>
+              <a href="#faq" className="hover:text-[#009c3b] transition">FAQ</a>
+            </nav>
+          )}
         </div>
-        <button
-          type="button"
-          onClick={scrollToOferta}
-          className="animate-cta shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 shadow-md transition whitespace-nowrap"
-        >
-          <span className="hidden sm:inline">Quero o passo a passo</span>
-          <span className="sm:hidden">Quero o guia</span>
-          <ArrowRight className="size-4" />
-        </button>
+        {unlocked && (
+          <button
+            type="button"
+            onClick={scrollToOferta}
+            className="animate-cta shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 shadow-md transition whitespace-nowrap"
+          >
+            <span className="hidden sm:inline">Quero o passo a passo</span>
+            <span className="sm:hidden">Quero o guia</span>
+            <ArrowRight className="size-4" />
+          </button>
+        )}
       </div>
     </header>
   );
 }
 
-function Hero() {
+function Hero({ unlocked, onUnlock }: { unlocked: boolean; onUnlock: () => void }) {
   return (
     <section className="relative overflow-hidden bg-white border-b border-border">
       <div className="container mx-auto px-4 pt-10 pb-16 lg:pt-14 lg:pb-20 relative">
@@ -165,21 +248,42 @@ function Hero() {
         <div className="mt-10 max-w-5xl mx-auto animate-fade-up">
           <div className="relative rounded-3xl border border-border bg-white p-2 shadow-xl">
             <div className="relative rounded-[20px] overflow-hidden aspect-video bg-black">
-              <VSLPlayer videoId="Pc9NWmXa5qk" title="Como negociar pelo Desenrola sem aceitar a primeira proposta do banco" />
+              <VSLPlayer
+                videoId="Pc9NWmXa5qk"
+                title="Como negociar pelo Desenrola sem aceitar a primeira proposta do banco"
+                onReachUnlock={onUnlock}
+              />
             </div>
           </div>
 
+          {/* Mensagem de gatilho (enquanto a página está bloqueada) */}
+          {!unlocked && (
+            <div className="mt-6 mx-auto max-w-2xl rounded-2xl border-2 border-[#ffdf00] bg-[#fffbe6] p-4 sm:p-5 text-center shadow-sm">
+              <p className="flex items-center justify-center gap-2 text-base sm:text-lg font-black text-[#002776]">
+                <LockIcon className="size-5 text-[#b8860b]" />
+                Assista o vídeo até o final para liberar
+              </p>
+              <p className="mt-1.5 text-sm text-foreground/75">
+                O <strong>passo a passo completo</strong> e a sua <strong>condição especial</strong> aparecem
+                automaticamente aqui assim que o vídeo chega na parte que importa.{" "}
+                <span className="text-[#b8860b] font-semibold">Não feche esta página.</span>
+              </p>
+            </div>
+          )}
 
-          <div className="mt-10 flex justify-center">
-            <button
-              type="button"
-              onClick={scrollToOferta}
-              className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-8 py-4 shadow-xl shadow-[#009c3b]/30 hover:scale-[1.02] transition"
-            >
-              QUERO NEGOCIAR MELHOR
-              <ArrowRight className="size-5" />
-            </button>
-          </div>
+          {/* Botão só aparece depois que o vídeo libera */}
+          {unlocked && (
+            <div className="mt-10 flex justify-center animate-fade-up">
+              <button
+                type="button"
+                onClick={scrollToOferta}
+                className="animate-cta inline-flex items-center gap-2 rounded-full bg-[#009c3b] hover:bg-[#00822f] text-white text-sm font-bold px-8 py-4 shadow-xl shadow-[#009c3b]/30 hover:scale-[1.02] transition"
+              >
+                QUERO NEGOCIAR MELHOR
+                <ArrowRight className="size-5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -877,24 +981,33 @@ function Footer() {
 }
 
 export function Oferta() {
+  // Página bloqueada até o vídeo passar de 2:10.
+  const [unlocked, setUnlocked] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <AnnouncementBar />
-      <Header />
-      <Hero />
-      <TrustStrip />
-      <Pain />
-      <DiscountTables />
-      <Mechanism />
+      <Header unlocked={unlocked} />
+      <Hero unlocked={unlocked} onUnlock={() => setUnlocked(true)} />
 
-      <Product />
-      <Banks />
-      <Docs />
-      <Offer />
-      <Testimonials />
-      
-      <FAQ />
-      <FinalCTA />
+      {/* Resto da página só libera depois do vídeo */}
+      {unlocked && (
+        <>
+          <TrustStrip />
+          <Pain />
+          <DiscountTables />
+          <Mechanism />
+
+          <Product />
+          <Banks />
+          <Docs />
+          <Offer />
+          <Testimonials />
+
+          <FAQ />
+          <FinalCTA />
+        </>
+      )}
       <Footer />
     </div>
   );
