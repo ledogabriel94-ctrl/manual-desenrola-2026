@@ -801,9 +801,6 @@ function Guarantee() {
 function FAQ() {
   const faqs = [
     { q: "O Desenrola é gratuito?", a: "Sim. O Novo Desenrola Brasil é um programa público e gratuito." },
-    { q: "Então por que pagar pelo manual?", a: "O manual não vende acesso ao programa. Ele oferece orientação educativa, roteiro e organização para você negociar com mais clareza." },
-    { q: "O manual é um guia educativo independente?", a: "Sim. É um material educativo baseado em documentos públicos, sem vínculo com bancos ou órgãos oficiais." },
-    { q: "O desconto é garantido?", a: "Não. Os descontos dependem de banco, tipo de dívida, atraso e regras vigentes. O manual te ajuda a chegar melhor preparado." },
     { q: "Serve para qualquer dívida?", a: "O foco são dívidas bancárias elegíveis ao Desenrola. O manual também traz orientações gerais de negociação." },
     { q: "Como recebo o acesso?", a: "Acesso imediato por e-mail após a confirmação do pagamento." },
     { q: "Posso ler pelo celular?", a: "Sim. O PDF pode ser lido em celular, tablet ou computador." },
