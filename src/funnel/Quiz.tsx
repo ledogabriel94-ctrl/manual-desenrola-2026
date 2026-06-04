@@ -106,7 +106,7 @@ export function Quiz({ onComplete }: { onComplete: () => void }) {
     if (!analisando) return;
     const t = setTimeout(() => {
       onComplete();
-    }, 3500);
+    }, 5000);
     return () => clearTimeout(t);
   }, [analisando, onComplete]);
 
